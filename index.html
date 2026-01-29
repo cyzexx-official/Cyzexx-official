@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<title>Cyzexx Platform</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root {
+  --bg: #0b0f14;
+  --card: #11161d;
+  --gold: #d4af37;
+  --text: #e6e6e6;
+  --muted: #9aa4b2;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+header {
+  background: #0e131a;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #1f2630;
+  flex-wrap: wrap;
+}
+
+.logo { font-size: 18px; font-weight: bold; color: var(--gold); letter-spacing: 1px; }
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+nav button {
+  background: none;
+  border: none;
+  color: var(--text);
+  margin-left: 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+nav button:hover { color: var(--gold); }
+
+.lang-switch {
+  margin-left: 15px;
+  padding: 3px 6px;
+  border: 1px solid var(--gold);
+  border-radius: 5px;
+  background: none;
+  color: var(--gold);
+  cursor: pointer;
+}
+
+.section { display: none; padding: 20px; }
+.section.active { display: block; }
+
+.card {
+  background: var(--card);
+  border: 1px solid #1f2630;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+h2 { color: var(--gold); margin-top: 0; }
+
+.note { font-size: 14px; color: var(--muted); margin-top: 10px; line-height: 1.6; }
+
+.tv-container { height: 60vh; margin-top: 15px; border-radius: 10px; overflow: hidden; border: 1px solid #1f2630; }
+
+a { color: var(--gold); text-decoration: none; font-weight: bold; }
+ul { margin-left: 20px; }
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .card { padding: 15px; }
+  nav button { margin-left: 8px; font-size: 13px; margin-top: 5px; }
+  .tv-container { height: 50vh; }
+  header { justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">CYZEXX</div>
+  <nav>
+    <button onclick="showSection('about')">About</button>
+    <button onclick="showSection('analysis')">Analysis</button>
+    <button onclick="showSection('ema')">EMA Strategy</button>
+    <button onclick="showSection('contact')">Contact</button>
+    <button class="lang-switch" onclick="switchLang()">UZ</button>
+  </nav>
+</header>
+
+<!-- ABOUT -->
+<div id="about" class="section active">
+  <div class="card">
+    <h2 data-uz="About & Education" data-ru="О платформе" data-en="About & Education">About & Education</h2>
+    <p data-uz="Cyzexx mustaqil tahlil platformasi..." 
+       data-ru="Cyzexx - независимая платформа для анализа..." 
+       data-en="Cyzexx is an independent trading analysis platform...">
+       Cyzexx is an independent trading analysis platform created for <b>educational and analytical purposes only</b>.
+    </p>
+    <ul class="note" data-uz="O‘rganish:" data-ru="Учиться:" data-en="Learn:">
+      <li>📊 Market structure & trend analysis</li>
+      <li>📈 EMA 50 / EMA 200 strategy</li>
+      <li>⚖️ Risk management basics</li>
+      <li>🧠 How to analyze the market independently</li>
+    </ul>
+    <div class="note" data-uz="Admin bilan bog‘lanish" data-ru="Связь с админом" data-en="Contact admin">
+      👨‍💼 Admin: <b>@Cyzexx337</b><br>⏰ Ish vaqti: <b>14:30 – 23:00</b>
+    </div>
+    <div class="note">⚠️ Not financial advice. All trading decisions are your own responsibility.</div>
+  </div>
+</div>
+
+<!-- ANALYSIS -->
+<div id="analysis" class="section">
+  <div class="tv-container">
+    <div id="tradingview_chart"></div>
+  </div>
+</div>
+
+<!-- EMA STRATEGY -->
+<div id="ema" class="section">
+  <div class="card">
+    <h2>EMA 50 / EMA 200 Strategy</h2>
+    <p>
+      EMA (Exponential Moving Average) is a key indicator for trend following. 
+      Here you can see:
+    </p>
+    <ul>
+      <li>📈 EMA 50 - short-term trend</li>
+      <li>📊 EMA 200 - long-term trend</li>
+      <li>🔍 EMA50 crosses EMA200 → potential buy/sell signal</li>
+      <li>💡 Always confirm with market structure and risk management</li>
+    </ul>
+    <p class="note">
+      This section is for <b>educational purposes only</b>.
+    </p>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="section">
+  <div class="card">
+    <h2>Personal Messages</h2>
+    <p>
+      Contact via Telegram bot for personal consultation:
+    </p>
+    <p>
+      👉 <a href="https://t.me/cyzexx_support_bot" target="_blank">@cyzexx_support_bot</a>
+    </p>
+    <div class="note">
+      📩 SMS: 1 USDT / 0.5 TON<br>
+      📞 Call: 1.2 USDT / 0.8 TON<br>
+      ⏰ Ish vaqti: <b>14:30 – 23:00</b>
+    </div>
+  </div>
+</div>
+
+<script>
+let currentLang = 'uz';
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function switchLang() {
+  if(currentLang === 'uz') currentLang = 'ru';
+  else if(currentLang === 'ru') currentLang = 'en';
+  else currentLang = 'uz';
+  document.querySelector('.lang-switch').innerText = currentLang.toUpperCase();
+  
+  document.querySelectorAll('[data-uz]').forEach(el=>{
+    el.innerText = el.getAttribute(`data-${currentLang}`);
+  });
+}
+</script>
+
+<script src="https://s3.tradingview.com/tv.js"></script>
+<script>
+new TradingView.widget({
+  container_id: "tradingview_chart",
+  autosize: true,
+  symbol: "BINANCE:BTCUSDT",
+  interval: "15",
+  timezone: "Etc/UTC",
+  theme: "dark",
+  style: "1",
+  locale: "en",
+  toolbar_bg: "#0e131a",
+  enable_publishing: false,
+  allow_symbol_change: true,
+  studies: ["EMA@tv-basicstudies","EMA@tv-basicstudies"],
+  studies_overrides: {
+    "EMA@tv-basicstudies.length": 50,
+    "EMA@tv-basicstudies.length.1": 200
+  }
+});
+</script>
+
+</body>
+</html>
